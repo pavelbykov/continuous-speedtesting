@@ -3,7 +3,8 @@
 if [ -z "$1" ]
 then
     echo "Usage: $0 <mysqlrootpwd> [dbname] [user] [pass]"
-	echo "Random values generated for empty parameters"
+    echo "Random values generated for empty parameters"
+    exit 1
 fi
 
 if [ -z "$2" ]

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Script reads CPU/MEM/HDD system parameters and pushes them into db
+
+
 if [ -z "$4" ]
 then
     echo "Usage: $0 <user> <pass> <dbname> <tbname>"
@@ -12,7 +15,8 @@ else
 fi
 
 
-
+# If table does not exist, create a table.
+# You can use hostname as name.
 #CREATE TABLE $HOSTNAME (Hostnm VARCHAR(32), PrivIPv4Addr VARCHAR(15), PubIPv4Addr VARCHAR(15), CPU1M FLOAT, CPU5M FLOAT, CPU15M FLOAT, MTOTAL BIGINT, MUSED BIGINT, MFREE BIGINT, HDDTOTAL BIGINT, HDDUSED BIGINT, HDDFREE BIGINT, Tmstmp DATETIME);
 
 Hostnm="$(hostname)"
