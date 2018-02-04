@@ -23,7 +23,7 @@ IPv4Addr=$(dig +short myip.opendns.com @resolver1.opendns.com)
 #loop through CSV and push fields to db
 while read ServerID Sponsor ServerName Timestamp Distance Ping Download Upload
       do
-        echo "INSERT INTO $TBNAME (ServerID,Sponsor,ServerName,Timestamp,Distance,Ping,Download,Upload) VALUES ('ServerID', '$Sponsor', '$ServerName', '$Timestamp', '$Distance', '$Ping', '$Download', '$Upload', '$IPv4Addr');"
+        echo "INSERT INTO $TBNAME (ServerID,Sponsor,ServerName,Timestamp,Distance,Ping,Download,Upload) VALUES ('$ServerID', '$Sponsor', '$ServerName', '$Timestamp', '$Distance', '$Ping', '$Download', '$Upload', '$IPv4Addr');"
 
 done < temp_speedtest_result.csv | mysql -u $USER -p$PASS $DBNAME;
 
