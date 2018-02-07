@@ -1,0 +1,546 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": 1,
+  "links": [],
+  "rows": [
+    {
+      "collapse": false,
+      "height": 351,
+      "panels": [
+        {
+          "aliasColors": {
+            "Ping": "#cffaff",
+            "Upload": "#bf1b00"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MYSQL",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Ping",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  Download as value,\n  'Download' as metric\nFROM ${provider}\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  Upload as value,\n  'Upload' as metric\nFROM ${provider}\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC",
+              "refId": "B"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": true,
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  Ping as value,\n  'Ping' as metric\nFROM ${provider}\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Elreko Speed Test Result",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 254,
+      "panels": [
+        {
+          "aliasColors": {
+            "Ping": "#badff4"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MYSQL",
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Latency"
+            },
+            {
+              "alias": "Unknown",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  Ping as value,\n  'Ping' as metric\nFROM ${provider}\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 340,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MYSQL",
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  CPU15M as value,\n  'CPU15M' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  CPU5M as value,\n  'CPU5M' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "B"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  CPU1M as value,\n  'CPU1M' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "MFREE": "#629e51",
+            "MTOTAL": "#70dbed"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MYSQL",
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  MTOTAL as value,\n  'MTOTAL' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  MUSED as value,\n  'MUSED' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "B"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  MFREE as value,\n  'MFREE' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "MEM",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "HDDFREE": "#629e51",
+            "HDDTOTAL": "#70dbed",
+            "MFREE": "#629e51",
+            "MTOTAL": "#70dbed"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MYSQL",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  HDDTOTAL as value,\n  'HDDTOTAL' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  HDDUSED as value,\n  'HDDUSED' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "B"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "rawSql": "SELECT\n  UNIX_TIMESTAMP(Tmstmp) as time_sec,\n  HDDFREE as value,\n  'HDDFREE' as metric\nFROM pi\nWHERE $__timeFilter(Tmstmp)\nORDER BY Tmstmp ASC\n",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HDD",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "SpeedTests",
+  "version": 5
+}
