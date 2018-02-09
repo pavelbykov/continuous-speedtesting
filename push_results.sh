@@ -17,7 +17,7 @@ fi
 
 
 #Perform speedtest and store results in variables
-IFS=',' read ServerID Sponsor ServerName Tmstmp Distance Ping Download Upload <<< `speedtest-cli --csv`
+IFS=',' read ServerID Sponsor ServerName Tmstmp Distance Ping Download Upload <<< `speedtest-cli --csv | sed s/\"//g | sed s/\,//g`
 
 #determine public IP address
 PubIPv4Addr=$(dig +short myip.opendns.com @resolver1.opendns.com)
