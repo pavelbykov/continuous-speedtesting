@@ -22,5 +22,5 @@ fi
 DSTLIST="TESTLOCAL TESTGOOGLE TESTIPF"
 for DST in $DSTLIST; do
  Tmstmp="$(date +'%F %T')"
- echo "INSERT INTO $TBNAME ($DST,Tmstmp) VALUES ('`fping -i 1000 -c 10 -r 0 -t 800 -q $DST 2>&1 | awk -F/ '{print $4 * 10}'`', '$Tmstmp');" | mysql -u $USER -p$PASS $DBNAME &
+ echo "INSERT INTO $TBNAME ($DST,Tmstmp) VALUES ('`fping -i 5000 -c 10 -r 0 -t 800 -q $DST 2>&1 | awk -F/ '{print $4 * 10}'`', '$Tmstmp');" | mysql -u $USER -p$PASS $DBNAME &
 done
