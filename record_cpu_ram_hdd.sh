@@ -23,9 +23,11 @@ Hostnm="$(hostname)"
 PrivIPv4Addr="$(hostname -I | awk '{print $1}')"
 PubIPv4Addr="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 Tmstmp="$(date +'%F %T')"
-IFS=',' read CPU1M CPU5M CPU15M <<< `uptime | awk '{print $10$11$12}'`
+
+IFS=',' read CPU1M CPU5M CPU15M <<< `cat /proc/loadavg | awk '{print $1","$2","$3}'`
+IFS=',' read UPTIM <<< `cat /proc/uptime | awk '{print $1/60}'`
+
 IFS=',' read MTOTAL MUSED MFREE <<< `free -b | awk '/^Mem/{print $2","$3","$4}'`
 IFS=',' read  HDDTOTAL HDDUSED HDDFREE <<< `df --block-size=1 | grep /$ | awk '{print $2","$3","$4}'`
 
-echo "INSERT INTO $TBNAME (Hostnm,PrivIPv4Addr,PubIPv4Addr,CPU1M,CPU5M,CPU15M,MTOTAL,MUSED,MFREE,HDDTOTAL,HDDUSED,HDDFREE,Tmstmp) VALUES ('$Hostnm', '$PrivIPv4Addr', '$PubIPv4Addr', '$CPU1M', '$CPU5M', '$CPU15M', '$MTOTAL', '$MUSED', '$MFREE', '$HDDTOTAL', '$HDDUSED', '$HDDFREE', '$Tmstmp');" | mysql -u $USER -p$PASS $DBNAME
-
+echo "INSERT INTO $TBNAME (Hostnm,PrivIPv4Addr,PubIPv4Addr,UPTIM,CPU1M,CPU5M,CPU15M,MTOTAL,MUSED,MFREE,HDDTOTAL,HDDUSED,HDDFREE,Tmstmp) VALUES ('$Hostnm', '$PrivIPv4Addr', '$PubIPv4Addr', '$UPTIM', '$CPU1M', '$CPU5M', '$CPU15M', '$MTOTAL', '$MUSED', '$MFREE', '$HDDTOTAL', '$HDDUSED', '$HDDFREE', '$Tmstmp');" | mysql -u $USER -p$PASS $DBNAME
